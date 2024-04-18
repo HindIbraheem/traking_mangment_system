@@ -25,7 +25,7 @@ Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>['isAdmin','auth','PreventBackHistory']],function(){
         Route::get('dashboard',[AdminController::class,'index'])->name('admin.dashboard');
@@ -39,10 +39,20 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::get('profile',[employeDetailsController::class,'profile'])->name('user.profile');
         Route::get('settings',[employeDetailsController::class,'settings'])->name('user.settings');
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
-
         Route::post('Submit-Employes', [employeDetailsController::class, 'Submit_Employes'])->name('user.Submit_Employes');
 
+
+        Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');
+
+
         Route::get('Vacation-Request',[VacationsController::class,'VacationRequest'])->name('user.VacationRequest');
-        Route::post('requestVacationSubmit',[VacationsController::class,'requestVacationSubmit'])->name('user.requestVacationSubmit');
+
+
+        Route::post('normalVacationSubmit',[VacationsController::class,'normalVacationSubmit'])->name('normalVacationSubmit');
+        Route::post('SickVacationSubmit',[VacationsController::class,'SickVacationSubmit'])->name('SickVacationSubmit');
+        Route::post('TimerVacationSubmit',[VacationsController::class,'TimerVacationSubmit'])->name('TimerVacationSubmit');
+
+
+
 
 });

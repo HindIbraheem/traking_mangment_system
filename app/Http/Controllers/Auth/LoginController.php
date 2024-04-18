@@ -61,6 +61,11 @@ class LoginController extends Controller
             elseif(auth()->user()->role_id == 2){
                 return redirect()->route('admin.dashboard');
             }
+
+            elseif(auth()->user()->role_id == 3){
+                return redirect()->route('admin.dashboard');
+            }
+
             else{
             // return redirect()->route('login')->with('error','Email and password are wrong');
         }

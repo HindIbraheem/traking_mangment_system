@@ -2,7 +2,10 @@
 
 
 <x-header></x-header>
-<x-employeNavigation></x-employeNavigation>
+<x-navigation></x-navigation>
+
+
+
 <div class="mobile-menu-overlay"></div>
 
     <div class="main-container">

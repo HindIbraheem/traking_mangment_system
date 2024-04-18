@@ -16,15 +16,13 @@ class CreateVactaionsTable extends Migration
         Schema::create('vactaions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-                   // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('vacation_type');
-            $table->date('from_day')->nullable();
-            $table->date('to_day')->nullable();
-            $table->date('from_time')->nullable();
-            $table->date('to_time')->nullable();
+            $table->dateTime('from_day')->nullable();
+            $table->dateTime('to_day')->nullable();
             $table->string('vacation_purpoes')->nullable();
-            $table->boolean('mag_department_aprove')->nullable();
-            $table->boolean('mag_classes_aprove')->nullable();
+            $table->boolean('mag_classes_aprove')->default('0');
+            $table->boolean('mag_department_aprove')->default('0');
             $table->text('vacation_note')->nullable();
             $table->timestamps();
         });
