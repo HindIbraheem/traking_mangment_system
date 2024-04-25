@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('viewPdf',[AdminController::class,'viewPdf'])->name('viewPdf');
+
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
         Auth::routes();
 
