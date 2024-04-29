@@ -4,7 +4,7 @@
 To set up this project, first clone the repositiory
 
 ```bash
-$ git clone https://github.com/Aswar-Group/Aswar-branches.git
+$ git clone repo
 ```
 
 Change your working directory into the project directory
