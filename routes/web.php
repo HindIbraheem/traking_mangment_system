@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Departments\AdminDepartmentController;
+use App\Http\Controllers\Departments\DepartmentController;
 use App\Http\Controllers\Employes\employeDetailsController;
 use App\Http\Controllers\Employes\VacationsController;
 use App\Http\Controllers\UserController;
@@ -20,7 +22,12 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('viewPdf',[AdminController::class,'viewPdf'])->name('viewPdf');
+Route::get('personalVacation',[AdminController::class,'personalVacation'])->name('personalVacation');
+// Route::get('viewPdf',[AdminController::class,'viewPdf'])->name('viewPdf');
+
+
+
+
 
 Route::middleware(['middleware'=>'PreventBackHistory'])->group(function(){
         Auth::routes();
@@ -42,19 +49,31 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::get('settings',[employeDetailsController::class,'settings'])->name('user.settings');
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
         Route::post('Submit-Employes', [employeDetailsController::class, 'Submit_Employes'])->name('user.Submit_Employes');
-
-
         Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');
-
-
         Route::get('Vacation-Request',[VacationsController::class,'VacationRequest'])->name('user.VacationRequest');
+        Route::post('normalVacationSubmit',[VacationsController::class,'normalVacationSubmit'])->name('user.normalVacationSubmit');
+        Route::post('SickVacationSubmit',[VacationsController::class,'SickVacationSubmit'])->name('user.SickVacationSubmit');
+        Route::post('TimerVacationSubmit',[VacationsController::class,'TimerVacationSubmit'])->name('user.TimerVacationSubmit');
+
+});
+
+Route::group(['prefix'=>'department','middleware'=>['isDepartment','auth','PreventBackHistory']],function(){
+    Route::get('dashboard',[DepartmentController::class,'index'])->name('department.dashboard');
+    Route::get('Vacation-Request',[DepartmentController::class,'VacationRequest'])->name('department.VacationRequest');
+    Route::post('RequesSubmit={id}',[DepartmentController::class,'RequesSubmit'])->name('department.RequesSubmit');
+});
+
+Route::group(['prefix'=>'AdminDepartment','middleware'=>['isAdminDepartment','auth','PreventBackHistory']],function(){
+    Route::get('dashboard',[AdminDepartmentController::class,'index'])->name('AdminDepartment.dashboard');
+    // Route::get('Vacation-Request',[AdminDepartmentController::class,'VacationRequest'])->name('AdminDepartment.VacationRequest');
+    Route::get('Current-Status',[AdminDepartmentController::class,'CurrentStatus'])->name('AdminDepartment.CurrentStatus');
+
+    Route::post('Current-Status-Submit',[AdminDepartmentController::class,'Current_Status_Submit'])->name('AdminDepartment.Current-Status-Submit');
+    Route::get('deleteCurrent/{id}',[AdminDepartmentController::class,'deleteCurrent'])->name('AdminDepartment.deleteCurrent');
 
 
-        Route::post('normalVacationSubmit',[VacationsController::class,'normalVacationSubmit'])->name('normalVacationSubmit');
-        Route::post('SickVacationSubmit',[VacationsController::class,'SickVacationSubmit'])->name('SickVacationSubmit');
-        Route::post('TimerVacationSubmit',[VacationsController::class,'TimerVacationSubmit'])->name('TimerVacationSubmit');
 
+    Route::get('Past-Status',[AdminDepartmentController::class,'PastStatus'])->name('AdminDepartment.PastStatus');
 
-
-
+    // Route::post('RequesSubmit={id}',[DepartmentController::class,'RequesSubmit'])->name('department.RequesSubmit');
 });

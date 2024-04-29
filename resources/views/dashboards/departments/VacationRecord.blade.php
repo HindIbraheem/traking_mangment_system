@@ -88,16 +88,11 @@
                 </tr>
             </thead>
             <tbody  >
-                @foreach ($Vacations as $value )
+                @foreach ($Vacations as $key => $value )
 
                 <tr>
                     <td class="table-plus">{{ $key+1 }}</td>
-                    <td >
-
-                        {{-- {{ $value->vacation_type }} --}}
-                        <x-vacation-type :value="$value" />
-
-                    </td>
+                    <td >{{ $value->vacation_type }}</td>
                     <td>
                         {{ date('Y-m-d', strtotime($value->from_day));}}
                          <br>

@@ -19,10 +19,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('job_number');
-            $table->string('fname');
-            $table->string('sname');
-            $table->string('thname');
-            $table->string('foname');
+            // $table->string('fname');
+            // $table->string('sname');
+            // $table->string('thname');
+            // $table->string('foname');
+            $table->string('full_name');
             $table->string('full_m_name');
             $table->boolean('marital_sta');
             $table->boolean('gender');
@@ -33,9 +34,9 @@ return new class extends Migration
             $table->unsignedBigInteger('eductaion_id')->nullable();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             // $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
-            // $table->foreign('class_id')->references('id')->on('users')->onDelete('cascade');
-            // $table->foreign('vacation_id')->references('id')->on('vactaions')->onDelete('cascade');
-            // $table->foreign('eductaion_id')->references('id')->on('eductaiones')->onDelete('cascade');
+            // $table->foreign('class_id')->references('id')->on('clases')->onDelete('cascade');
+            $table->foreign('vacation_id')->references('id')->on('vactaions')->onDelete('cascade');
+            $table->foreign('eductaion_id')->references('id')->on('eductaiones')->onDelete('cascade');
             $table->string('total_normal_vacation');
             $table->string('total_timer_vacation');
             $table->string('total_sick_vacation');

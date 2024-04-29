@@ -64,7 +64,7 @@
 											<h4 class="modal-title" id="myLargeModalLabel"> ( اجازة اعتيادية ) نوع الاجازة </h4>
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 										</div>
-                                        <form action="{{ route('normalVacationSubmit') }}" method="post"
+                                        <form action="{{ route('user.normalVacationSubmit') }}" method="post"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -72,7 +72,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
 
-                                                    <input type="hidden" name="vacation_type" value="اعتيادية">
+                                                    <input type="hidden" name="vacation_type" value="1">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
                                                             <input name="from_day" class="form-control RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="date" required>
@@ -114,7 +114,7 @@
 											<h4 class="modal-title" id="sick-modal"> ( اجازة مرضية ) نوع الاجازة </h4>
 											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 										</div>
-									    <form action="{{ route('SickVacationSubmit') }}" method="post"
+									    <form action="{{ route('user.SickVacationSubmit') }}" method="post"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -122,7 +122,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
 
-                                                    <input type="hidden" name="vacation_type" value="مرضية">
+                                                    <input type="hidden" name="vacation_type" value="2">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
                                                             <input name="from_day" class="form-control RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="date" required>
@@ -168,7 +168,7 @@
 										</div>
 
 
-                                        <form action="{{ route('TimerVacationSubmit') }}" method="post"
+                                        <form action="{{ route('user.TimerVacationSubmit') }}" method="post"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -176,7 +176,7 @@
                                             <div class="row" dir="rtl">
 
                                                 <div class="col-md-12 col-sm-12">
-                                                    <input type="hidden" name="vacation_type" value="زمنية">
+                                                    <input type="hidden" name="vacation_type" value="3">
                                                     <div class="row">
                                                         <div class="col-md-12 col-sm-12">
                                                         <div class="form-group">

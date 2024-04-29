@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVactaionsTable extends Migration
+class CreateVacationesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateVactaionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vactaions', function (Blueprint $table) {
+        Schema::create('vacationes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-                   $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('vacation_type');
+            $table->unsignedBigInteger('employ_id');
+            $table->foreign('employ_id')->references('id')->on('employes')->onDelete('cascade');
+            $table->unsignedBigInteger('dep_id');
+            $table->foreign('dep_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->bigInteger('vacation_type');
             $table->dateTime('from_day')->nullable();
             $table->dateTime('to_day')->nullable();
             $table->string('vacation_purpoes')->nullable();
@@ -35,6 +37,6 @@ class CreateVactaionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vactaions');
+        Schema::dropIfExists('vacationes');
     }
 }

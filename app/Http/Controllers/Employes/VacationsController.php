@@ -42,11 +42,12 @@ class VacationsController extends Controller
             $data = $request->input();
 
             $Vacations = new Vacations();
-            $Vacations->user_id = Auth::user()->id;
+            $Vacations->empoloye_id = Auth::user()->id;
             $Vacations->vacation_type = $data['vacation_type'];
             $Vacations->from_day = Carbon::parse($data['from_day'])->format('Y-m-d');
             $Vacations->to_day = Carbon::parse($data['to_day'])->format('Y-m-d');
             $Vacations->vacation_purpoes = $data['vacation_purpoes'];
+            $Vacations->dep_id = Auth::user()->dep_id;
             $Vacations->save();
 
             return redirect()->back()->with('success', " تم تقديم طلب الاجازة بنجاح ");
@@ -73,11 +74,12 @@ class VacationsController extends Controller
 
             $data = $request->input();
             $Vacations = new Vacations();
-            $Vacations->user_id = Auth::user()->id;
+            $Vacations->empoloye_id = Auth::user()->id;
             $Vacations->vacation_type = $data['vacation_type'];
             $Vacations->from_day = Carbon::parse($data['from_day'])->format('Y-m-d');
             $Vacations->to_day = Carbon::parse($data['to_day'])->format('Y-m-d');
             $Vacations->vacation_purpoes = 'بسبب وعكة صحية';
+            $Vacations->dep_id = Auth::user()->dep_id;
             $Vacations->save();
 
             return redirect()->back()->with('success', " تم تقديم طلب الاجازة بنجاح ");
@@ -101,11 +103,12 @@ class VacationsController extends Controller
             print_r($data['day'].' '.Carbon::parse($data['from_day'])->format('H:i:s'));
 
             $Vacations = new Vacations();
-            $Vacations->user_id = Auth::user()->id;
+            $Vacations->empoloye_id = Auth::user()->id;
             $Vacations->vacation_type = $data['vacation_type'];
             $Vacations->from_day =$data['day'].' '.Carbon::parse($data['from_day'])->format('H:i:s');
             $Vacations->to_day = $data['day'].' '.Carbon::parse($data['to_day'])->format('H:i:s');
             $Vacations->vacation_purpoes = $data['vacation_purpoes'];
+            $Vacations->dep_id = Auth::user()->dep_id;
             $Vacations->save();
 
             return redirect()->back()->with('success', " تم تقديم طلب الاجازة بنجاح ");

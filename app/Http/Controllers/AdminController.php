@@ -21,10 +21,10 @@ class AdminController extends Controller
 
 
 
-    public function viewPdf()
+    public function personalVacation()
     {
 
-;
+
 
 
 
@@ -35,24 +35,13 @@ class AdminController extends Controller
         $pdf::SetTitle('Document Title');
         $pdf::SetSubject('Document Subject');
         $pdf::SetKeywords('keywords, here');
-
         $pdf::AddPage();
         $pdf::SetFontSize(10);
-
-
         $pdf::SetFont('aefurat', '', 18);
         $pdf::Ln();
-
-
          $pdf::setRTL(true);
-
-
-
-
-        $html = view('pdf.document')->render();
-
+        $html = view('pdf.personalVacation')->render();
         $pdf::writeHTML($html, true, false, true, false, '');
-
         $pdf::Output('document.pdf', 'I');
 
 

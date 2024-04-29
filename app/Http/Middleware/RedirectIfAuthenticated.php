@@ -33,8 +33,15 @@ class RedirectIfAuthenticated
             }
 
             elseif(Auth::guard($guard)->check() && Auth::user()->role_id == 3){
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('department.dashboard');
             }
+
+            elseif(Auth::guard($guard)->check() && Auth::user()->role_id == 4){
+                return redirect()->route('AdminDepartment.dashboard');
+            }
+
+
+
 
         }
         return $next($request);
