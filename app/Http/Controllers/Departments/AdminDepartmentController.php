@@ -18,6 +18,56 @@ class AdminDepartmentController extends Controller
         return view('dashboards.AdminDepartments.index');
     }
 
+
+    function TimerReport(Request $request){
+
+
+        $today= date('Y-m-d');
+        $yestrday= date("Y-m-d", strtotime("yesterday"));
+
+
+        if($request->has('from_day')){
+            $from =    Carbon::parse( $request->input('from_day'))->format('Y-m-d');
+            $to =    Carbon::parse( $request->input('to_day'))->format('Y-m-d');
+
+        //   print_r(  $yestrday);
+        //   $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->whereBetween('vacationes.from_day', [$from, $to])->get();
+        $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $from)->where(DB::raw("(DATE_FORMAT(vacationes.to_day,'%Y-%m-%d'))"), "<=", $to)->get();
+
+
+        //   print_r(  $now);
+
+        }
+        else{
+
+            $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), "<=", $today)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $yestrday)->get();
+
+
+        }
+        $employe=employeDetails::where('department_id', '=', Auth::user()->dep_id)->get();
+
+
+    $vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+
+
+
+
+
+
+        return view('dashboards.AdminDepartments.TimerReport' ,compact( 'Vacations' ,'vacation_type' ,'employe' ));
+
+
+
+
+    }
+
+
+
+
+
+
+
+
  function VacationRequest(){
 
 

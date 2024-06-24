@@ -120,13 +120,13 @@
                 </div>
                 @endif
 
-   {{-- صفحات القسم  --}}
+   {{-- صفحات ذاتية القسم  --}}
    @if (Auth::user()->role_id==4 )
    <div class="sidebar-menu">
        <ul id="accordion-menu">
            <li>
                <a href="{{ route('AdminDepartment.dashboard') }}" target="_blank"
-                   class=" {{ Route::is('department.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                   class=" {{ Route::is('AdminDepartment.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
                    <span class="micon dw dw-home"></span>
 
                    <span class="mtext">الصفحة الرئيسية
@@ -171,12 +171,28 @@
            </li>
 
            <li>
-            <a href="{{ route('AdminDepartment.dashboard') }}" target="_blank"
-                class=" {{ Route::is('department.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
-                <span class="micon dw dw-invoice-1"></span>
-                <span class="mtext"> التقارير
-                </span>
-            </a>
+
+            <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" style="font-size: 20px" dir="rtl">
+
+                    <span class="micon dw dw-invoice-1"></span>
+                    <span class="mtext"> التقارير
+                </a>
+                <ul class="submenu">
+
+                    <li><a href="{{ route('AdminDepartment.TimerReport') }}"
+                     class="{{ Route::is('AdminDepartment.TimerReport') ? 'active' : '' }}">
+                     تقارير الاجازات الزمنية</a></li>
+
+
+                    {{-- <li><a href="{{ route('AdminDepartment.PastStatus') }}"
+                            class="{{ Route::is('AdminDepartment.PastStatus') ? 'active' : '' }}">
+                         تقارير اخرى </a></li> --}}
+                </ul>
+            </li>
+
+            <li>
+
         </li>
 
 

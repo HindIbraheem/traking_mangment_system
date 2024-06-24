@@ -71,7 +71,7 @@ Route::group(['prefix'=>'AdminDepartment','middleware'=>['isAdminDepartment','au
     Route::post('Current-Status-Submit',[AdminDepartmentController::class,'Current_Status_Submit'])->name('AdminDepartment.Current-Status-Submit');
     Route::get('deleteCurrent/{id}',[AdminDepartmentController::class,'deleteCurrent'])->name('AdminDepartment.deleteCurrent');
 
-
+    Route::get('Timer-Report',[AdminDepartmentController::class,'TimerReport'])->name('AdminDepartment.TimerReport');
 
     Route::get('Past-Status',[AdminDepartmentController::class,'PastStatus'])->name('AdminDepartment.PastStatus');
 

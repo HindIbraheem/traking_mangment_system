@@ -9,6 +9,10 @@
     زمنية
 @endif
 
+
+
+
+
 @if ($value->vacation_type == '4')
     اجازة امومة
 @endif

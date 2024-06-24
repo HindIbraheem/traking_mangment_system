@@ -88,7 +88,7 @@
                 </tr>
             </thead>
             <tbody  >
-                @foreach ($Vacations as $value )
+                @foreach ($Vacations as $key =>$value )
 
                 <tr>
                     <td class="table-plus">{{ $key+1 }}</td>

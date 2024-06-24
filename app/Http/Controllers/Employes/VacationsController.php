@@ -15,8 +15,8 @@ class VacationsController extends Controller
 
 
     function VacationRecord(){
-
-        $Vacations= Vacations::where('user_id', '=', Auth::user()->id)->get();
+        $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->join('users','employes.user_id','=','users.id')->select('employes.*','vacationes.*' , 'users.*')->where('users.id', '=', Auth::user()->id)->get();
+        // $Vacations= Vacations::where('user_id', '=', Auth::user()->id)->get();
         return view('dashboards.Vacationes.VacationRecord' , compact('Vacations'));
     }
 
