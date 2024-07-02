@@ -25,6 +25,26 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('src/plugins/datatables/css/responsive.bootstrap4.min.css') }}">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('vendors/styles/style.css') }}">
+
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
+    </script>
+
+
+    <!-- Include Moment.js CDN -->
+    <script type="text/javascript" src=
+"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js">
+    </script>
+
+    <!-- Include Bootstrap DateTimePicker CDN -->
+    <link
+        href=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
+
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js">
+        </script>
 <style>
 
 

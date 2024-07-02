@@ -15,13 +15,16 @@ class CreateVacationesTable extends Migration
     {
         Schema::create('vacationes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('employ_id');
-            $table->foreign('employ_id')->references('id')->on('employes')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('dep_id');
             $table->foreign('dep_id')->references('id')->on('departments')->onDelete('cascade');
-            $table->bigInteger('vacation_type');
+            $table->unsignedBigInteger('vacation_type_id');
+            $table->foreign('vacation_type_id')->references('id')->on('vacation_types')->onDelete('cascade');
             $table->dateTime('from_day')->nullable();
             $table->dateTime('to_day')->nullable();
+            $table->dateTime('from_time')->nullable();
+            $table->dateTime('to_time')->nullable();
             $table->string('vacation_purpoes')->nullable();
             $table->boolean('mag_classes_aprove')->default('0');
             $table->boolean('mag_department_aprove')->default('0');

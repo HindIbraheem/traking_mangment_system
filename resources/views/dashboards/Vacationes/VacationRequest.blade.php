@@ -3,6 +3,8 @@
 
 <x-header></x-header>
 <x-navigation></x-navigation>
+
+
 <div class="mobile-menu-overlay"></div>
 
 
@@ -27,7 +29,7 @@
                                 @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show mt-15" role="alert">
                                     <strong> <i class="icon-copy dw dw-notification"></i> تهانينا <br></strong> {{ session('success') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -36,7 +38,7 @@
                             @elseif(session('failed'))
                             <div class="alert alert-danger alert-dismissible fade show mt-15" role="alert">
                                 <strong>للأسف!...</strong> {{ session('failed') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -50,8 +52,77 @@
 					</div>
 				</div>
 				<div class="row clearfix"  style="text-align: right">
+
+
+                    <div class="col-md-3 col-sm-12 mb-30">
+						<div class="pd-20 card-box height-100-p">
+							<h5 class="h4"> اجازات اخرى   </h5>
+							<a href="#" class="btn-block" data-toggle="modal" data-target="#otherVacation" type="button">
+								<img src="../vendors/images/otherVacations.png" alt="modal">
+							</a>
+							<div class="modal fade bs-example-modal-lg" id="otherVacation" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-lg modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 class="modal-title" id="myLargeModalLabel"> ( اجازة اعتيادية ) نوع الاجازة </h4>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										</div>
+                                        <form action="{{ route('user.otherVacationSubmit') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+
+										<div class="modal-body"  >
+                                            <div class="row" dir="rtl">
+                                                <div class="col-md-12 col-sm-12" >
+
+                                                    <input type="hidden" name="vacation_type" value="1">
+                                                    <div class="form-group" dir="rtl">
+                                                    <select class="custom-select2 form-control " name="vacation_type" style="width: 100%; height: 38px; text-align:right">
+                                                         @foreach ($Vacations_type as $data)
+
+
+                                                            <option value="{{$data->id}}">{{$data->vacation_type}}</option>
+
+                                                            @endforeach
+                                                    </select>
+                                                    </div>
+                                                        <div class="form-group">
+                                                            <label>من تاريخ </label>
+                                                            <input name="from_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required autocomplete="off">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>الى تاريخ </label>
+                                                            <input name="to_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ انتهاء الاجازة " type="text" required autocomplete="off">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>الغرض من الاجازة </label>
+                                                            <textarea name="vacation_purpoes" class="form-control" name="vacation_purpoes" required placeholder="الغرض من طلب الاجازة "></textarea>
+                                                        </div>
+                                                </div>
+
+                                               </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء التغييرات</button>
+											<button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+										</div>
+                                        </form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
 					<!-- Large modal -->
-					<div class="col-md-4 col-sm-12 mb-30">
+					<div class="col-md-3 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 							<h5 class="h4"> اجازة اعتيادية </h5>
 							<a href="#" class="btn-block" data-toggle="modal" data-target="#bd-example-modal-lg" type="button">
@@ -75,11 +146,11 @@
                                                     <input type="hidden" name="vacation_type" value="1">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
-                                                            <input name="from_day" class="form-control RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="date" required>
+                                                            <input name="from_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required autocomplete="off">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>الى تاريخ </label>
-                                                            <input name="to_day" class="form-control RdirectionClass" placeholder="اختر تاريخ انتهاء الاجازة " type="date" required>
+                                                            <input name="to_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ انتهاء الاجازة " type="text" required autocomplete="off">
                                                         </div>
                                                         <div class="form-group">
                                                             <label>الغرض من الاجازة </label>
@@ -90,8 +161,8 @@
                                                </div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary">Save changes</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء التغييرات</button>
+											<button type="submit" class="btn btn-primary">حفظ التغييرات</button>
 										</div>
                                         </form>
 									</div>
@@ -101,7 +172,7 @@
 					</div>
 
                     <!-- Large modal -->
-					<div class="col-md-4 col-sm-12 mb-30">
+					<div class="col-md-3 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 							<h5 class="h4">اجازة مرضية </h5>
 							<a href="#" class="btn-block" data-toggle="modal" data-target="#sick-modal" type="button">
@@ -125,11 +196,11 @@
                                                     <input type="hidden" name="vacation_type" value="2">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
-                                                            <input name="from_day" class="form-control RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="date" required>
+                                                            <input name="from_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required>
                                                         </div>
                                                         <div class="form-group " >
                                                             <label>الى تاريخ </label>
-                                                            <input name="to_day" class="form-control RdirectionClass" placeholder="اختر تاريخ انتهاء الاجازة " type="date" required>
+                                                            <input name="to_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ انتهاء الاجازة " type="text" required>
                                                         </div>
 
                                                         <div class="form-group">
@@ -140,8 +211,8 @@
                                                </div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary">Save changes</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء التغييرات</button>
+											<button type="submit" class="btn btn-primary">حفظ التغييرات</button>
 										</div>
                                         </form>
 
@@ -153,7 +224,7 @@
 
 
                     <!-- Large modal -->
-					<div class="col-md-4 col-sm-12 mb-30">
+					<div class="col-md-3 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 							<h5 class="h4">اجازة زمنية </h5>
 							<a href="#" class="btn-block" data-toggle="modal" data-target="#timerModal" type="button">
@@ -168,35 +239,46 @@
 										</div>
 
 
+
+
                                         <form action="{{ route('user.TimerVacationSubmit') }}" method="post"
                                         enctype="multipart/form-data">
                                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 										<div class="modal-body" >
-                                            <div class="row" dir="rtl">
+                                            <div class="row" >
 
-                                                <div class="col-md-12 col-sm-12">
+                                                <div class="col-md-12 col-sm-12"  >
                                                     <input type="hidden" name="vacation_type" value="3">
                                                     <div class="row">
                                                         <div class="col-md-12 col-sm-12">
                                                         <div class="form-group">
                                                             <label> تاريخ الاجازة </label>
-                                                            <input name="day" class="form-control mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="date" required>
+
+
+
+
+                                                            <input name="day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required>
 
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                                <label>  وقت انتهاء الاجازة   </label>
+                                                                <input class="form-control RdirectionClass"
+                                                                type="text" id="end_datetime"   name="from_day" required placeholder="ادخل تاريخ ووقت انتهاء الاجازة الصحيح"  />
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-md-6 col-sm-12">
                                                         <div class="form-group">
                                                                 <label>  وقت بدء الاجازة  </label>
-                                                                <input class="form-control time-picker-default"  name="from_day" required placeholder="ادخل تاريخ ووقت انتهاء الاجازة الصحيح" type="text">
+                                                                <input class="form-control RdirectionClass"
+                                                                type="text" id="start_datetime"  name="to_day" required placeholder="ادخل تاريخ ووقت بدء الاجازة الصحيح"  />
                                                         </div>
                                                     </div>
-                                                        <div class="col-md-6 col-sm-12">
-                                                            <div class="form-group">
-                                                                    <label>  وقت انتهاء الاجازة </label>
-                                                                    <input class="form-control time-picker-default" name="to_day" required placeholder="ادخل تاريخ ووقت بدء الاجازة الصحيح" type="text">
-                                                            </div>
-                                                        </div>
+
 
 
                                                 </div>
@@ -210,8 +292,8 @@
                                                </div>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary">Save changes</button>
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء التغييرات</button>
+											<button type="submit" class="btn btn-primary">حفظ التغييرات</button>
 										</div>
                                         </form>
 
@@ -229,6 +311,14 @@
 					</div>
                 </div>
 
+                <script>
 
+                    $('#start_datetime').datetimepicker({
+                        format: 'hh:mm:ss a'
+                    });
+                    $('#end_datetime').datetimepicker({
+                        format: 'hh:mm:ss a'
+                    });
+                </script>
 
                 <x-footer></x-footer>

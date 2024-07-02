@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJobesTable extends Migration
+class CreateVacationTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateJobesTable extends Migration
      */
     public function up()
     {
-        Schema::create('jobes', function (Blueprint $table) {
+        Schema::create('vacation_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('vacation_type');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateJobesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jobes');
+        Schema::dropIfExists('vacation_types');
     }
 }

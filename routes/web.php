@@ -54,6 +54,7 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::post('normalVacationSubmit',[VacationsController::class,'normalVacationSubmit'])->name('user.normalVacationSubmit');
         Route::post('SickVacationSubmit',[VacationsController::class,'SickVacationSubmit'])->name('user.SickVacationSubmit');
         Route::post('TimerVacationSubmit',[VacationsController::class,'TimerVacationSubmit'])->name('user.TimerVacationSubmit');
+        Route::post('OtherVacationSubmit',[VacationsController::class,'otherVacationSubmit'])->name('user.otherVacationSubmit');
 
 });
 
