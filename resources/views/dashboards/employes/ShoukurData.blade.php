@@ -14,13 +14,13 @@
 					<div class="row" dir="rtl" style="text-align: right">
 						<div class="col-md-12 col-sm-12">
 							<div class="title">
-								<h4>اجازاتي </h4>
+								<h4>  كتب الشكر  </h4>
 							</div>
 
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">سجل الاجازات </a></li>
-									<li class="breadcrumb-item active" aria-current="page">طلب اجازة </li>
+									<li class="breadcrumb-item"><a href="index.html"> بيانات الموظف </a></li>
+									<li class="breadcrumb-item active" aria-current="page"> بيانات العمل   </li>
 								</ol>
 
                                 @if (session('success'))

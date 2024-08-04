@@ -14,7 +14,7 @@
 					<div class="row" dir="rtl" style="text-align: right">
 						<div class="col-md-12 col-sm-12">
 							<div class="title">
-								<h4> بيانات العمل </h4>
+								<h4>  كتب الشكر  </h4>
 							</div>
 
 							<nav aria-label="breadcrumb" role="navigation">

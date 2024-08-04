@@ -47,7 +47,17 @@ class employeDetailsController extends Controller
     }
 
 
-    public function workData(Request $request)
+    public function shoukurData(Request $request)
+    {
+
+        $user=Auth::user()->id;
+        $workData =  employeDetails::where('user_id', $user)->get();
+        return view('dashboards.employes.ShoukurData', compact('workData'));
+
+    }
+
+
+    public function Committee(Request $request)
     {
 
         $user=Auth::user()->id;

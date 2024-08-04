@@ -49,7 +49,11 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::get('settings',[employeDetailsController::class,'settings'])->name('user.settings');
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
         Route::get('personalData', [employeDetailsController::class, 'personalData'])->name('user.personalData');
-        Route::get('workData', [employeDetailsController::class, 'workData'])->name('user.workData');
+        Route::get('shoukurData', [employeDetailsController::class, 'ShoukurData'])->name('user.ShoukurData');
+        Route::get('committee', [employeDetailsController::class, 'Committee'])->name('user.Committee');
+
+
+
 
         Route::get('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
 

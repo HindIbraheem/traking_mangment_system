@@ -25,16 +25,18 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('user.personalData') }}"
+                        class=" {{ Route::is('user.personalData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-user-2"></span>
 
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle" style="font-size: 20px">
-                        <span class="micon dw dw-user-2"></span><span class="mtext">بيانات الموظف </span>
+                        <span class="mtext">بيانات الموظف
+                        </span>
                     </a>
-                    <ul class="submenu">
-                        <li><a href="{{route('user.personalData')}}" class=" {{ Route::is('user.personalData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 18px"> البيانات الشخصية </a></li>
-                        <li><a href="{{route('user.workData')}}" class=" {{ Route::is('user.workData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 18px">  بيانات العمل </a></li>
-                    </ul>
                 </li>
+
+
+
 
 
 
@@ -57,8 +59,8 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('user.dashboard') }}"
-                        class=" {{ Route::is('user.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                    <a href="{{ route('user.ShoukurData') }}"
+                        class=" {{ Route::is('user.ShoukurData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
                         <span class="micon dw dw-calendar1"></span>
 
                         <span class="mtext"> رصيد الاجازات
@@ -66,19 +68,19 @@
                     </a>
                 </li>
 
-                {{-- <li>
-                    <a href="{{ route('user.VacationRecord') }}"
-                        class=" {{ Route::is('user.VacationRecord') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                <li>
+                    <a href="{{ route('user.Committee') }}"
+                        class=" {{ Route::is('user.Committee') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
                         <span class="micon dw dw-calendar1"></span>
 
                         <span class="mtext">   اللجان
                         </span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li>
-                    <a href="{{ route('user.VacationRecord') }}"
-                        class=" {{ Route::is('user.VacationRecord') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                    <a href="{{ route('user.ShoukurData') }}"
+                        class=" {{ Route::is('user.ShoukurData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
                         <span class="micon dw dw-calendar1"></span>
 
                         <span class="mtext">   كتب الشكر
