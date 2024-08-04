@@ -16,7 +16,7 @@
         <div class="sidebar-menu">
             <ul id="accordion-menu">
                 <li>
-                    <a href="{{ route('user.dashboard') }}" target="_blank"
+                    <a href="{{ route('user.dashboard') }}"
                         class=" {{ Route::is('user.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
                         <span class="micon dw dw-home"></span>
 
@@ -27,18 +27,63 @@
 
 
                 <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle" style="font-size: 20px" dir="rtl">
-                        <span class="micon dw dw-calendar1" ></span><span class="mtext">اجازاتي </span>
+                    <a href="javascript:;" class="dropdown-toggle" style="font-size: 20px">
+                        <span class="micon dw dw-user-2"></span><span class="mtext">بيانات الموظف </span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('user.VacationRecord') }}"
-                                class="{{ Route::is('user.VacationRecord') ? 'active' : '' }}"> سجل الاجازات </a>
-                        </li>
-
-                        <li><a href="{{ route('user.VacationRequest') }}"
-                                class="{{ Route::is('user.VacationRequest') ? 'active' : '' }}">
-                                طلب اجازة </a></li>
+                        <li><a href="{{route('user.personalData')}}" class=" {{ Route::is('user.personalData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 18px"> البيانات الشخصية </a></li>
+                        <li><a href="{{route('user.workData')}}" class=" {{ Route::is('user.workData') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 18px">  بيانات العمل </a></li>
                     </ul>
+                </li>
+
+
+
+                <li>
+                    <a href="{{ route('user.VacationRequest') }}"
+                        class=" {{ Route::is('user.VacationRequest') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-calendar1"></span>
+                        <span class="mtext">  طلب اجازة
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.VacationRecord') }}"
+                        class=" {{ Route::is('user.VacationRecord') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-folder-123"></span>
+                        <span class="mtext"> سجل الاجازات
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('user.dashboard') }}"
+                        class=" {{ Route::is('user.dashboard') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-calendar1"></span>
+
+                        <span class="mtext"> رصيد الاجازات
+                        </span>
+                    </a>
+                </li>
+
+                {{-- <li>
+                    <a href="{{ route('user.VacationRecord') }}"
+                        class=" {{ Route::is('user.VacationRecord') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-calendar1"></span>
+
+                        <span class="mtext">   اللجان
+                        </span>
+                    </a>
+                </li> --}}
+
+                <li>
+                    <a href="{{ route('user.VacationRecord') }}"
+                        class=" {{ Route::is('user.VacationRecord') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
+                        <span class="micon dw dw-calendar1"></span>
+
+                        <span class="mtext">   كتب الشكر
+                        </span>
+                    </a>
                 </li>
             </ul>
         </div>

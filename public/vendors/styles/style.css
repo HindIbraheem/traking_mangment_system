@@ -1434,7 +1434,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
     height: 70px;
     width: calc(100% - 280px);
     background: #fff;
-    right: 0;
+    left: 0;
     top: 0;
     z-index: 123;
     display: -webkit-box;
@@ -1798,7 +1798,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
 .left-side-bar,
 .left-side-bar:before {
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out
@@ -2359,7 +2359,7 @@ body.IE .register-page-wrap .container {
 }
 
 .main-container {
-    padding: 80px 20px 0 300px
+    padding: 80px 300px 0px 0px
 }
 
 .page-header .dropdown-menu {
@@ -4372,7 +4372,7 @@ body.IE .register-page-wrap .container {
 }
 
 .right-sidebar-visible {
-    right: 0
+    left: 0
 }
 
 .right-sidebar .sidebar-title {
@@ -4532,7 +4532,7 @@ body.IE .register-page-wrap .container {
         width: 250px
     }
     .main-container {
-        padding-left: 270px
+        padding-right: 270px
     }
 }
 

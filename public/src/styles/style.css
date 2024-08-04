@@ -1336,7 +1336,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 }
 .left-side-bar{
 	position: fixed;
-	left: 0;
+	right: 0;
 	top: 0;
 	width: 280px;
 	height: 100vh;
@@ -1353,7 +1353,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 .left-side-bar:before{
 	content: "";
 	position: fixed;
-	left: 0;
+	right: 0;
 	top: 0;
 	z-index: -1;
 	width: 100%;

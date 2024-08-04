@@ -48,7 +48,12 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::get('profile',[employeDetailsController::class,'profile'])->name('user.profile');
         Route::get('settings',[employeDetailsController::class,'settings'])->name('user.settings');
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
-        Route::post('Submit-Employes', [employeDetailsController::class, 'Submit_Employes'])->name('user.Submit_Employes');
+        Route::get('personalData', [employeDetailsController::class, 'personalData'])->name('user.personalData');
+        Route::get('workData', [employeDetailsController::class, 'workData'])->name('user.workData');
+
+        Route::get('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
+
+
         Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');
         Route::get('Vacation-Request',[VacationsController::class,'VacationRequest'])->name('user.VacationRequest');
         Route::post('normalVacationSubmit',[VacationsController::class,'normalVacationSubmit'])->name('user.normalVacationSubmit');
