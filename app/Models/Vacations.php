@@ -11,9 +11,9 @@ class Vacations extends Model
     protected $table = 'vacationes';
     protected $fillable = [
 
-        'employ_id',
+        'user_id',
         'dep_id',
-        'vacation_type',
+        'vacation_type_id',
         'from_day',
         'to_day',
         'vacation_purpoes',

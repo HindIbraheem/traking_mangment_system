@@ -55,7 +55,8 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
 
 
 
-        Route::get('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
+        Route::post('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
+        Route::post('update_personalData/{id}', [employeDetailsController::class, 'update_personalData'])->name('user.update_personalData');
 
 
         Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');

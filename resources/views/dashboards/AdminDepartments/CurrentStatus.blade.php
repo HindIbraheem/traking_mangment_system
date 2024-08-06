@@ -56,7 +56,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group  ">
                                         <label>الموظف </label>
-                                        <select class="selectpicker form-control RdirectionClass"   name="empoloye_id" data-live-search="true"  >
+                                        <select class="selectpicker form-control RdirectionClass"   name="user_id" data-live-search="true"  >
                                             <optgroup label="رجاءا اختيار موظف "  class="RdirectionClass">
 
                                                 @foreach ($employe as $data)
@@ -72,7 +72,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>نوع الاجازة </label>
-                                        <select class="selectpicker form-control RdirectionClass" name="vacation_type" style="width: 100%; height: 38px;">
+                                        <select class="selectpicker form-control RdirectionClass" name="vacation_type_id" style="width: 100%; height: 38px;">
 
                                                 <option value="1" class="RdirectionClass">اعتيادية </option>
                                                 <option value="2" class="RdirectionClass"> مرضية</option>

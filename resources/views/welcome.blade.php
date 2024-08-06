@@ -26,10 +26,16 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
 
-                    @if (Auth::user()->role_id==2 )
+                    @if (Auth::user()->role_id==1 )
+                    <a href="{{ url('/user/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Back  {{ Auth::user()->name  }}  </a>
+
+                    @elseif (Auth::user()->role_id==2 )
                     <a href="{{ url('/admin/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Back  {{ Auth::user()->name  }}  </a>
-                    @else
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Back   </a>
+                    @elseif (Auth::user()->role_id==3 )
+                    <a href="{{ url('/department/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Back  {{ Auth::user()->name  }}  </a>
+
+                    {{-- @else
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Back tt   </a> --}}
                     @endif
 
 

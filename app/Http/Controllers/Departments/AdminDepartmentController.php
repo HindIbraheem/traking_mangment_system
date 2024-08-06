@@ -31,8 +31,8 @@ class AdminDepartmentController extends Controller
             $to =    Carbon::parse( $request->input('to_day'))->format('Y-m-d');
 
         //   print_r(  $yestrday);
-        //   $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->whereBetween('vacationes.from_day', [$from, $to])->get();
-        $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $from)->where(DB::raw("(DATE_FORMAT(vacationes.to_day,'%Y-%m-%d'))"), "<=", $to)->get();
+        //   $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->whereBetween('vacationes.from_day', [$from, $to])->get();
+        $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $from)->where(DB::raw("(DATE_FORMAT(vacationes.to_day,'%Y-%m-%d'))"), "<=", $to)->get();
 
 
         //   print_r(  $now);
@@ -40,14 +40,14 @@ class AdminDepartmentController extends Controller
         }
         else{
 
-            $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), "<=", $today)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $yestrday)->get();
+            $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), "<=", $today)->where(DB::raw("(DATE_FORMAT(vacationes.from_day,'%Y-%m-%d'))"), ">=", $yestrday)->get();
 
 
         }
         $employe=employeDetails::where('department_id', '=', Auth::user()->dep_id)->get();
 
 
-    $vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+    $vacation_type = Vacations::groupBy('vacation_type_id')->select('vacation_type_id', DB::raw('count(*) as total'))->get();
 
 
 
@@ -71,11 +71,11 @@ class AdminDepartmentController extends Controller
  function VacationRequest(){
 
 
-    $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
+    $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
     ->get();
 
 
-$vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+$vacation_type = Vacations::groupBy('vacation_type_id')->select('vacation_type_id', DB::raw('count(*) as total'))->get();
 
     return view('dashboards.AdminDepartments.VacationRequest' ,compact( 'Vacations' ,'vacation_type' ));
 }
@@ -89,11 +89,11 @@ function CurrentStatus(){
 
 
   $employe=employeDetails::where('department_id', '=', Auth::user()->dep_id)->get();
-    $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
+    $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
    ->get();
 
 
-$vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+$vacation_type = Vacations::groupBy('vacation_type_id')->select('vacation_type_id', DB::raw('count(*) as total'))->get();
 
     return view('dashboards.AdminDepartments.CurrentStatus' ,compact( 'Vacations' ,'vacation_type' ,'employe' ));
 }
@@ -118,11 +118,11 @@ $vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB
             $data = $request->input();
 
             $Vacations = new Vacations();
-            $Vacations->employ_id = $data['empoloye_id'];
-            $Vacations->vacation_type = $data['vacation_type'];
+            $Vacations->user_id = $data['user_id'];
+            $Vacations->vacation_type_id = $data['vacation_type_id'];
             $Vacations->from_day = Carbon::parse($data['from_day'])->format('Y-m-d H:i:s');
             $Vacations->to_day = Carbon::parse($data['to_day'])->format('Y-m-d H:i:s');
-            $Vacations->vacation_purpoes = $data['vacation_type'];
+            $Vacations->vacation_purpoes = $data['vacation_type_id'];
             $Vacations->dep_id = Auth::user()->dep_id;
             $Vacations->save();
 
@@ -155,11 +155,11 @@ $vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB
 function PastStatus(){
 
 
-    $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
+    $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
     ->get();
 
 
-$vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+$vacation_type = Vacations::groupBy('vacation_type_id')->select('vacation_type_id', DB::raw('count(*) as total'))->get();
 
     return view('dashboards.AdminDepartments.PastStatus' ,compact( 'Vacations' ,'vacation_type' ));
 }

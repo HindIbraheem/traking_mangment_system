@@ -75,9 +75,9 @@
                                             <div class="row" dir="rtl">
                                                 <div class="col-md-12 col-sm-12" >
 
-                                                    <input type="hidden" name="vacation_type" value="1">
+                                                    <input type="hidden" name="vacation_type_id" value="1">
                                                     <div class="form-group" dir="rtl">
-                                                    <select class="custom-select2 form-control " name="vacation_type" style="width: 100%; height: 38px; text-align:right">
+                                                    <select class="custom-select2 form-control " name="vacation_type_id" style="width: 100%; height: 38px; text-align:right">
                                                          @foreach ($Vacations_type as $data)
 
 
@@ -143,7 +143,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
 
-                                                    <input type="hidden" name="vacation_type" value="1">
+                                                    <input type="hidden" name="vacation_type_id" value="1">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
                                                             <input name="from_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required autocomplete="off">
@@ -193,7 +193,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
 
-                                                    <input type="hidden" name="vacation_type" value="2">
+                                                    <input type="hidden" name="vacation_type_id" value="2">
                                                         <div class="form-group">
                                                             <label>من تاريخ </label>
                                                             <input name="from_day" class="form-control date-picker mb-5 RdirectionClass" placeholder="اختر تاريخ بدء الاجازة " type="text" required>
@@ -248,8 +248,9 @@
 										<div class="modal-body" >
                                             <div class="row" >
 
+                                                <input type="hidden" name="vacation_type_id" value="3">
                                                 <div class="col-md-12 col-sm-12"  >
-                                                    <input type="hidden" name="vacation_type" value="3">
+
                                                     <div class="row">
                                                         <div class="col-md-12 col-sm-12">
                                                         <div class="form-group">
@@ -267,7 +268,7 @@
                                                         <div class="form-group">
                                                                 <label>  وقت انتهاء الاجازة   </label>
                                                                 <input class="form-control RdirectionClass"
-                                                                type="text" id="end_datetime"   name="from_day" required placeholder="ادخل تاريخ ووقت انتهاء الاجازة الصحيح"  />
+                                                                type="text" id="end_datetime"   name="to_time" required placeholder="ادخل تاريخ ووقت انتهاء الاجازة الصحيح"  />
                                                         </div>
                                                     </div>
 
@@ -275,7 +276,7 @@
                                                         <div class="form-group">
                                                                 <label>  وقت بدء الاجازة  </label>
                                                                 <input class="form-control RdirectionClass"
-                                                                type="text" id="start_datetime"  name="to_day" required placeholder="ادخل تاريخ ووقت بدء الاجازة الصحيح"  />
+                                                                type="text" id="start_datetime"  name="from_time" required placeholder="ادخل تاريخ ووقت بدء الاجازة الصحيح"  />
                                                         </div>
                                                     </div>
 

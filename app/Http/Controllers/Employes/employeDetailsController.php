@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Employes;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clases;
+use App\Models\Education;
 use App\Models\employeDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Mockery\Expectation;
 
@@ -37,16 +40,6 @@ class employeDetailsController extends Controller
 
 
 
-    public function submit_personalData(Request $request)
-    {
-
-        // $user=Auth::user()->id;
-        // $workData =  employeDetails::where('user_id', $user)->get();
-        // return view('dashboards.employes.workData', compact('workData'));
-
-    }
-
-
     public function shoukurData(Request $request)
     {
 
@@ -71,93 +64,204 @@ class employeDetailsController extends Controller
     public function personalData(Request $request)
     {
 
-        $user=Auth::user()->id;
-        $personalData =  employeDetails::where('user_id', $user)->get();
-        return view('dashboards.employes.personalData', compact('personalData'));
 
-        // $rules = [
-        //     'fname' => 'required',
-        //     'sname' => 'required',
-        //     'thname' => 'required',
-        //     'foname' => 'required',
-        //     // 'lastname' => 'required',
-        //     'f_m_name' => 'required',
-        //     's_m_name' => 'required',
-        //     'th_m_name' => 'required',
-        //     'birth' => 'required',
-        //     'job_tit' => 'required',
-        //     'title_date' => 'required',
-        //     'job_number' => 'required',
-        //     'job_date' => 'required',
-        //     'job_class' => 'required',
-        //     'job_step' => 'required',
-        //     'addMoreInputFields.*.uni' => 'required',
-        //     'addMoreInputFields.*.specialty' => 'required',
-        //     'addMoreInputFields.*.craductedDate' => 'required',
-        //     'addMoreInputFields.*.craductedCountry' => 'required',
+        $dep_id=Auth::user()->dep_id;
+        $user_id=Auth::user()->id;
+        $classData =  Clases::where('dep_id', $dep_id)->get();
+        $check =  employeDetails::where('user_id', $user_id)->get();
+        $education = Education::where('user_id', $user_id)->get();
 
+        return view('dashboards.employes.personalData', compact('classData' ,'check' ,'education'));
 
-        // ];
+    }
 
+    public function submit_personalData(Request $request)
+    {
+        $dep_id=Auth::user()->dep_id;
+        $user_id=Auth::user()->id;
 
-        // $validator = Validator::make($request->all(), $rules);
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator);
-        // } else {
+       $rules = [
+            'full_name' => 'required',
+            'full_m_name' => 'required',
+            'gender' => 'required',
+            'marital_sta' => 'required',
+            'class_id' => 'required',
+            'birth' => 'required|date',
+            'job_number' => 'required',
+            'job_title' => 'required',
+            'job_step' => 'required',
+            'job_phase' => 'required',
 
-
-        //     try {
-
-        //         $data = $request->input();
-        //         $employes = new Employes();
-        //         $employes->full_name = $data['fname'] . ' ' . $data['sname'] . ' ' . $data['thname'] . ' ' . $data['foname'] . ' ' . $data['lastname'];
-        //         $employes->mother_name = $data['f_m_name'] . ' ' . $data['s_m_name'] . ' ' . $data['th_m_name'];
-        //         $employes->marital_sta = $data['marital_sta'];
-        //         $employes->birth = $data['birth'];
-        //         $employes->gender = $data['gender'];
-        //         $employes->circle = $data['circle'];
-        //         $employes->dep = $data['dep'];
-        //         $employes->divition = $data['divition'];
-        //         $employes->job_tit = $data['job_tit'];
-        //         $employes->title_date = $data['title_date'];
-        //         $employes->scientific_title = $data['scientific_title'];
-        //         $employes->scientific_date = $data['scientific_date'];
-        //         $employes->position = $data['position'];
-        //         $employes->position_place = $data['position_place'];
-        //         $employes->position_date = $data['position_date'];
-        //         $employes->job_number = $data['job_number'];
-        //         $employes->job_date = $data['job_date'];
-        //         $employes->rejob_date = $data['rejob_date'];
-        //         $employes->transfer_date = $data['transfer_date'];
-        //         $employes->old_ministry = $data['old_ministry'];
-        //         $employes->job_type = $data['job_type'];
-        //         $employes->job_category = $data['job_category'];
-        //         $employes->service = $data['service'];
-        //         $employes->job_class = $data['job_class'];
-        //         $employes->job_step = $data['job_step'];
-        //         $employes->save();
-
-        //         $id  = Employes::latest()->lockForUpdate()->first()->id;
-
-
-        //         foreach ($request->addMoreInputFields as $key => $value) {
-        //             $certifications = new Certifications();
-        //             $certifications->employe_id = $id;
-        //             $certifications->degree = $value['degree'];
-        //             $certifications->uni = $value['uni'];
-        //             $certifications->specialty = $value['specialty'];
-        //             $certifications->craductedCountry = $value['craductedCountry'];
-        //             $certifications->craductedDate = $value['craductedDate'];
-        //             $certifications->save();
-        //         }
+            'addmore.*.uni' => 'required',
+            'addmore.*.college' => 'required',
+            'addmore.*.dep' => 'required',
+            'addmore.*.craductedCountry' => 'required',
+            'addmore.*.craductedDate' => 'required',
 
 
 
-        //         return redirect()->back()->with('status', " تم أضافة البيانات بنجاح  ");
-        //     } catch (Expectation $e) {
-        //         return redirect()->back()->with('failed', "لم يتم أضافة البيانات ");
-        //     }
-        // }
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        } else {
+
+
+            try {
+
+                $data = $request->input();
+                $employes = new employeDetails();
+
+                $employes->user_id  = $user_id;
+                 $employes->full_name = $data['full_name'];
+                 $employes->full_m_name = $data['full_m_name'];
+                 $employes->gender = $data['gender'];
+                 $employes->marital_sta = $data['marital_sta'];
+                 $employes->class_id = $data['class_id'];
+                 $employes->department_id  = $dep_id;
+                 $employes->birth = date("Y-m-d", strtotime($data['birth']));
+                 $employes->job_number = $data['job_number'];
+                 $employes->job_title = $data['job_title'];
+                $employes->job_step = $data['job_step'];
+                $employes->job_phase = $data['job_phase'];
+                $employes->ministry = 'دائرة الدراسات والتخطيط والمتابعة';
+                $employes->position = $data['position'];
+                $employes->old_ministry = $data['old_ministry'];
+                $employes->job_date = date("Y-m-d", strtotime($data['job_date']));
+                $employes->save();
+
+                // $id  = employeDetails::latest()->lockForUpdate()->first()->id;
+
+
+                foreach ($request->addmore as $key => $value) {
+                    $certifications = new Education();
+                    $certifications->user_id = $user_id;
+                    $certifications->uni = $value['uni'];
+                    $certifications->college = $value['college'];
+                    $certifications->dep = $value['dep'];
+                    $certifications->craductedCountry = $value['craductedCountry'];
+                    $certifications->craductedDate = $value['craductedDate'];
+                    $certifications->save();
+                }
+
+
+
+                return redirect()->back()->with('success', " تم تقديم طلب الاجازة بنجاح ");
+            } catch (Expectation $e) {
+                return redirect()->back()->with('failed', "لم يتم تقديم طلب الاجازة بنجاح ");
+            }
+        }
+
+    }
+
+    public function update_personalData(Request $request ,$id)
+    {
+
+        $dep_id=Auth::user()->dep_id;
+        $user_id=Auth::user()->id;
+
+       $rules = [
+            'full_name' => 'required',
+            'full_m_name' => 'required',
+            'gender' => 'required',
+            'marital_sta' => 'required',
+            'class_id' => 'required',
+            'birth' => 'required|date',
+            'job_number' => 'required',
+            'job_title' => 'required',
+            'job_step' => 'required',
+            'job_phase' => 'required',
+
+            // 'addmore.*.uni' => 'required',
+            // 'addmore.*.college' => 'required',
+            // 'addmore.*.dep' => 'required',
+            // 'addmore.*.craductedCountry' => 'required',
+            // 'addmore.*.craductedDate' => 'required',
+
+
+
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        } else {
+
+
+            try {
+
+                $ProductStocks = Education::where('user_id',Auth::user()->id)->pluck('id')->all();
+
+
+
+                // print_r($request->addMore);
+                // print_r($request->addmore);
+                // print_r($ProductStocks);
+                foreach ($request->addMore as $key => $value) {
+
+
+
+                    if(!is_null($value['id'])){
+                        DB::table('educations')->where('id', $value['id'])->update($value);
+
+
+                    }
+
+                }
+
+
+                    foreach ($request->addmore as $key1 => $value1) {
+
+
+
+                        if (!is_null($value1['uni']) && !is_null($value1['college']) && !is_null($value1['dep']) && !is_null($value1['craductedCountry']) && !is_null($value1['craductedDate'])) {
+                            $certifications = new Education();
+                            $certifications->user_id = $user_id;
+                            $certifications->uni = $value1['uni'];
+                            $certifications->college = $value1['college'];
+                            $certifications->dep = $value1['dep'];
+                            $certifications->craductedCountry = $value1['craductedCountry'];
+                            $certifications->craductedDate = $value1['craductedDate'];
+                            $certifications->save();
+
+                                }
+
+                    }
+
+
+
+
+                foreach($ProductStocks as $key => $value){
+
+                    if (!in_array($value, array_keys($request->addMore))) {
+                        DB::table('educations')->where('id', $value)-> delete($value);
+                    }
+                }
+
+//  // Find the user by ID
+//     $user = employeDetails::find($id);
+
+//     // Update the user's personal data
+//     $user->update([
+//         'name' => $request->input('name'),
+//         'email' => $request->input('email'),
+//         // Add other fields as needed
+//     ]);
+
+
+
+
+
+
+
+    // return redirect()->back()->with('success', " تم تقديم طلب الاجازة بنجاح ");
+} catch (Expectation $e) {
+    // return redirect()->back()->with('failed', "لم يتم تقديم طلب الاجازة بنجاح ");
+}
+}
     }
 }
 

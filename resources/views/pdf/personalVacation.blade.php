@@ -94,7 +94,7 @@ h1 {
 @php
 
 
-$users = DB::table('vacationes')->join('employes','vacationes.employ_id','=','employes.id')->join('departments','employes.department_id','=','departments.id')->select('employes.*','vacationes.*' , 'departments.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->get();
+$users = DB::table('vacationes')->join('employes','vacationes.user_id','=','employes.id')->join('departments','employes.department_id','=','departments.id')->select('employes.*','vacationes.*' , 'departments.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->get();
 
 
 @endphp
@@ -215,7 +215,7 @@ $users = DB::table('vacationes')->join('employes','vacationes.employ_id','=','em
 </html>
 
 
-<h1 class="title">Example of <i style="color:#990000">XHTML + CSS</i></h1>
+{{-- <h1 class="title">Example of <i style="color:#990000">XHTML + CSS</i></h1>
 
 <p class="first">Example of paragraph with class selector. <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed imperdiet lectus. Phasellus quis velit velit, non condimentum quam. Sed neque urna, ultrices ac volutpat vel, laoreet vitae augue. Sed vel velit erat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras eget velit nulla, eu sagittis elit. Nunc ac arcu est, in lobortis tellus. Praesent condimentum rhoncus sodales. In hac habitasse platea dictumst. Proin porta eros pharetra enim tincidunt dignissim nec vel dolor. Cras sapien elit, ornare ac dignissim eu, ultricies ac eros. Maecenas augue magna, ultrices a congue in, mollis eu nulla. Nunc venenatis massa at est eleifend faucibus. Vivamus sed risus lectus, nec interdum nunc.</span></p>
 
@@ -228,7 +228,7 @@ $users = DB::table('vacationes')->join('employes','vacationes.employ_id','=','em
 <br /><span class="capitalize">text-transform <b>cAPITALIZE</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
 </div>
 
-<br />
+<br /> --}}
 
 {{-- <table class="first" cellpadding="4" cellspacing="6">
  <tr>

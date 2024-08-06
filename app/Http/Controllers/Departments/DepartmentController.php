@@ -21,7 +21,7 @@ class DepartmentController extends Controller
 
 
 
-        $Vacations= Vacations::join('employes','vacationes.employ_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
+        $Vacations= Vacations::join('employes','vacationes.user_id','=','employes.id')->select('employes.*','vacationes.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)
         // ->where('vactaions.user_id', '=', 'empoloye_details.user_id')
         ->get();
 
@@ -32,7 +32,7 @@ class DepartmentController extends Controller
 
 
     // $vacation_type = Vacations::whereMonth('created_at' , Carbon::today()->month)->count();
-    $vacation_type = Vacations::groupBy('vacation_type')->select('vacation_type', DB::raw('count(*) as total'))->get();
+    $vacation_type = Vacations::groupBy('vacation_type_id')->select('vacation_type_id', DB::raw('count(*) as total'))->get();
 
         return view('dashboards.departments.VacationRequest' ,compact( 'Vacations' ,'vacation_type' ));
     }
