@@ -19,8 +19,8 @@
 
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">سجل الاجازات </a></li>
-									<li class="breadcrumb-item active" aria-current="page">طلب اجازة </li>
+									<li class="breadcrumb-item"><a href="index.html"> الصفحة الرئيسية </a></li>
+									<li class="breadcrumb-item active" aria-current="page">سجل الاجازات </li>
 								</ol>
 
                                 @if (session('success'))
@@ -46,27 +46,7 @@
 						</div>
 					</div>
 				</div>
-                <div class="row mb-10">
-                <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
-                    <div class="pd-20 card-box" dir="rtl" style="text-align: right">
-                        <h5 class="h5 mb-20">أحصائية الاجازات </h5>
 
-                        <h6 class="h6 mb-20">  رصيد الاجازات الكلي  </h6>
-
-                        <ul> اجمالي الاجازات لهذا الشهر
-                        <li>  - الاعتيادية</li>
-                         <li> - المرضية</li>
-                         <li> - الزمنية</li>
-
-                        </ul>
-                        <br>
-
-                        <div class="progress" style="height: 25px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 15%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 <!-- Export Datatable start -->
 <div class="card-box mb-30 " >
     <div class="pd-20">
@@ -99,19 +79,23 @@
 
                     </td>
                     <td>
-                        {{ date('Y-m-d', strtotime($value->from_day));}}
-                         <br>
                          <span dir="ltr">
-                        @if ($value->vacation_type == '3')
-                        {{ date('H:i:s A', strtotime($value->from_day));}}
+                        @if ($value->vacation_type_id == '3')
+                        {{date('g', strtotime($value->from_time)).'h'.' '.date('i', strtotime($value->from_time)).'m'}} من
+                        @else
+                        {{ date('Y-m-d', strtotime($value->from_day));}}
                         @endif
+
+
                     </span>
                     </td>
-                    <td> {{ date('Y-m-d', strtotime($value->to_day))}}
-                        <br>
+                    <td>
+
                         <span dir="ltr">
-                        @if ($value->vacation_type == '3')
-                        {{ date('H:i:s A', strtotime($value->to_day));}}
+                        @if ($value->vacation_type_id == '3')
+                        {{date('g', strtotime($value->to_time)).'h'.' '.date('i', strtotime($value->to_time)).'m'}} الى
+                        @else
+                        {{ date('Y-m-d', strtotime($value->to_day))}}
                         @endif
                         </span>
                       </td>

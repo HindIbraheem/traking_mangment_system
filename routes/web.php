@@ -50,6 +50,7 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
         Route::get('personalData', [employeDetailsController::class, 'personalData'])->name('user.personalData');
         Route::get('shoukurData', [employeDetailsController::class, 'ShoukurData'])->name('user.ShoukurData');
+        Route::get('shoukurAll', [employeDetailsController::class, 'shoukurAll'])->name('user.shoukurAll');
         Route::get('committee', [employeDetailsController::class, 'Committee'])->name('user.Committee');
 
 
@@ -57,6 +58,7 @@ Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistor
 
         Route::post('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
         Route::post('update_personalData/{id}', [employeDetailsController::class, 'update_personalData'])->name('user.update_personalData');
+        Route::post('submit_shoukur', [employeDetailsController::class, 'submit_shoukur'])->name('user.submit_shoukur');
 
 
         Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');

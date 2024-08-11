@@ -179,10 +179,6 @@ else{
         try {
 
             $data = $request->input();
-
-
-
-
             $Vacations = new Vacations();
             $Vacations->user_id = Auth::user()->id;
             $Vacations->vacation_type_id  = $data['vacation_type_id'];

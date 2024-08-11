@@ -39,6 +39,18 @@
                             </div>
 
                             @endif
+
+
+                            @if($errors->any())
+    @foreach ($errors->all() as $error)
+    <div class="alert alert-danger alert-dismissible fade show mt-15" role="alert">
+        <strong>{{ $error }}!!...</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endforeach
+@endif
                         </nav>
                     </div>
                 </div>
@@ -48,13 +60,7 @@
 
 
             <div class="pd-20 card-box mb-30" dir="rtl" style="text-align: right">
-                <div class="clearfix">
-                    <div class="pull-right">
-                        <h4 class="text-blue h4">ادخل جميع البيانات المطلوبة</h4>
-                        {{-- <p class="mb-30">All bootstrap element classies</p> --}}
-                    </div>
 
-                </div>
 @if ($check->isEmpty())
 
 @include('dashboards.employes.personalData-add')
