@@ -68,15 +68,19 @@
                     </a>
                 </li> --}}
 
-                <li>
-                    <a href="{{ route('user.Committee') }}"
-                        class=" {{ Route::is('user.Committee') ? 'active' : '' }} dropdown-toggle no-arrow" style="font-size: 20px">
-                        <span class="micon dw dw-group"></span>
 
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle "  style="font-size: 20px">
+                        <span class="micon dw dw-group"></span>
                         <span class="mtext">   اللجان
                         </span>
                     </a>
+                    <ul class="submenu">
+                        <li ><a href="{{ route('user.committeeData') }}" class="{{ Route::is('user.committeeData') ? 'active' : '' }}" style="font-size: 18px">  اضافة لجنة </a></li>
+                        <li><a href="{{ route('user.committeeAll') }}" class="{{ Route::is('user.committeeAll') ? 'active' : '' }}" style="font-size: 18px">  عرض اللجان </a></li>
+                    </ul>
                 </li>
+
                 <li class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle "  style="font-size: 20px">
                         <span class="micon dw  dw-certificate"></span>
@@ -88,9 +92,6 @@
                         <li ><a href="{{ route('user.ShoukurData') }}" class="{{ Route::is('user.ShoukurData') ? 'active' : '' }}" style="font-size: 18px">  اضافة كتاب </a></li>
                         <li><a href="{{ route('user.shoukurAll') }}" class="{{ Route::is('user.shoukurAll') ? 'active' : '' }}" style="font-size: 18px">  عرض الكتب </a></li>
                     </ul>
-
-
-
                 </li>
 
 

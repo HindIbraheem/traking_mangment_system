@@ -13,13 +13,13 @@
                 <div class="row" dir="rtl" style="text-align: right">
                     <div class="col-md-12 col-sm-12">
                         <div class="title">
-                            <h4> كتب الشكر </h4>
+                            <h4>  اللجان </h4>
                         </div>
 
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html"> الصفحة الرئيسية   </a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> عرض الكتب  </li>
+                                <li class="breadcrumb-item active" aria-current="page"> عرض جميع اللجان  </li>
                             </ol>
 
                             @if (session("success"))
@@ -47,31 +47,29 @@
             <!-- Export Datatable start -->
             <div class="card-box mb-30 ">
                 <div class="pd-20">
-                    {{-- <h4 class="text-blue h4">Data Table with Export Buttons</h4> --}}
+
                 </div>
                 <div class="pb-20 ">
                     <table class="table hover multiple-select-row data-table-export nowrap directionClass">
                         <thead>
 
                             <tr>
-                                {{-- <th class="table-plus datatable-nosort">#</th> --}}
                                 <th> نسخة من الكتاب </th>
                                 <th> العدد </th>
                                 <th> التاريخ </th>
-                                <th> الجهة المانحة </th>
+                                <th>  نوع الامر </th>
                                 <th> Action </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($Shoukur as $key => $value)
+                            @foreach ($Committe as $key => $value)
                                 <tr>
-                                    {{-- <td class="table-plus">{{ $key+1 }}</td> --}}
+
                                     <td style="text-align: right">
                                         <a href="#" data-toggle="modal" data-target="#image-modal-{{ $value->id }}">
                                             <img src="../assets/shoukurs/images/{{ $value->book_image }}" width="200px" alt="Book Image">
                                         </a>
 
-                                        <!-- Image Modal -->
                                         <div class="modal fade" id="image-modal-{{ $value->id }}" tabindex="-1" role="dialog" aria-labelledby="image-modal-label" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
@@ -94,7 +92,7 @@
 
                                     <td>{{ $value->book_number }}</td>
                                     <td>{{ $value->book_date }}</td>
-                                    <td>{{ $value->book_destination }}</td>
+                                    <td>{{ $value->book_type }}</td>
 
                                     <td>
 										<div class="dropdown">
@@ -102,7 +100,6 @@
 												<i class="dw dw-more"></i>
 											</a>
 											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												{{-- <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a> --}}
 												<a class="dropdown-item"  ><i class="dw dw-edit2"></i> تعديل </a>
 												<a class="dropdown-item" data-toggle="modal" data-target="#delete{{ $value->id }}" type="button"><i class="dw dw-delete-3"></i> حذف</a>
 											</div>

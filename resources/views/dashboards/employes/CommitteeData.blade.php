@@ -14,13 +14,13 @@
 					<div class="row" dir="rtl" style="text-align: right">
 						<div class="col-md-12 col-sm-12">
 							<div class="title">
-								<h4>  كتب الشكر  </h4>
+								<h4>   اللجان  </h4>
 							</div>
 
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html"> الصفحة الرئيسية   </a></li>
-									<li class="breadcrumb-item active" aria-current="page">  اضافة كتاب   </li>
+									<li class="breadcrumb-item active" aria-current="page">  اضافة لجنة   </li>
 								</ol>
 
                                 @if (session('success'))
@@ -67,7 +67,7 @@
 
                     </div>
 
-                    <form action="{{ route("user.submit_shoukur") }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route("user.submit_committee") }}" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
 
@@ -90,12 +90,11 @@
                               </div>
                                   <div class="col-6 mb-2">
 
-                                    <label>  الجهة المانحة  </label>
-                                    <select class="form-control" style="width: 100%;" name="book_destination">
-                                        <option value="معالي الوزير "> معالي الوزير </option>
-                                        <option value="السيد الوكيل">السيد الوكيل </option>
-                                        <option value="المدير العام ">المدير العام </option>
-                                        <option value="  جهة اخرى ">جهة اخرى </option>
+                                    <label>   نوع الأمر  </label>
+                                    <select class="form-control" style="width: 100%;" name="book_type">
+                                        <option value="أمر اداري"> أمر اداري </option>
+                                        <option value="أمر وزاري">أمر وزاري </option>
+
                                     </select>
 
                             </div>

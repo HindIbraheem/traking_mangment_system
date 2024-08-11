@@ -94,7 +94,7 @@ h1 {
 @php
 
 
-$users = DB::table('vacationes')->join('employes','vacationes.user_id','=','employes.id')->join('departments','employes.department_id','=','departments.id')->select('employes.*','vacationes.*' , 'departments.*')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->get();
+$users = DB::table('vacationes')->where('vacationes.dep_id', '=', Auth::user()->dep_id)->get();
 
 
 @endphp

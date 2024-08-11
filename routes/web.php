@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Departments\AdminDepartmentController;
 use App\Http\Controllers\Departments\DepartmentController;
+use App\Http\Controllers\Employes\CommitteeController;
 use App\Http\Controllers\Employes\employeDetailsController;
+use App\Http\Controllers\Employes\ShoukurController;
 use App\Http\Controllers\Employes\VacationsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -44,21 +46,29 @@ Route::group(['prefix'=>'admin','middleware'=>['isAdmin','auth','PreventBackHist
 });
 
 Route::group(['prefix'=>'user','middleware'=>['isUser','auth','PreventBackHistory']],function(){
-        Route::get('dashboard',[employeDetailsController::class,'index'])->name('user.dashboard');
+        Route::get('dashboard',[UserController::class,'index'])->name('user.dashboard');
         Route::get('profile',[employeDetailsController::class,'profile'])->name('user.profile');
         Route::get('settings',[employeDetailsController::class,'settings'])->name('user.settings');
         Route::get('settingsTwo',[employeDetailsController::class,'settingsTwo'])->name('user.settingsTwo');
+
         Route::get('personalData', [employeDetailsController::class, 'personalData'])->name('user.personalData');
-        Route::get('shoukurData', [employeDetailsController::class, 'ShoukurData'])->name('user.ShoukurData');
-        Route::get('shoukurAll', [employeDetailsController::class, 'shoukurAll'])->name('user.shoukurAll');
-        Route::get('committee', [employeDetailsController::class, 'Committee'])->name('user.Committee');
-
-
-
-
         Route::post('submit_personalData', [employeDetailsController::class, 'submit_personalData'])->name('user.submit_personalData');
         Route::post('update_personalData/{id}', [employeDetailsController::class, 'update_personalData'])->name('user.update_personalData');
-        Route::post('submit_shoukur', [employeDetailsController::class, 'submit_shoukur'])->name('user.submit_shoukur');
+
+
+        Route::get('shoukurAll', [ShoukurController::class, 'shoukurAll'])->name('user.shoukurAll');
+        Route::get('shoukurData', [ShoukurController::class, 'ShoukurData'])->name('user.ShoukurData');
+        Route::post('submit_shoukur', [ShoukurController::class, 'submit_shoukur'])->name('user.submit_shoukur');
+
+
+
+
+        Route::get('committeeAll', [CommitteeController::class, 'committeeAll'])->name('user.committeeAll');
+        Route::get('committeeData', [CommitteeController::class, 'committeeData'])->name('user.committeeData');
+        Route::post('submit_committee', [CommitteeController::class, 'submit_committee'])->name('user.submit_committee');
+
+
+
 
 
         Route::get('Vacation-Record',[VacationsController::class,'VacationRecord'])->name('user.VacationRecord');
